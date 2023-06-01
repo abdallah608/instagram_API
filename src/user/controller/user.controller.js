@@ -126,10 +126,11 @@ export const changePassword = catchAsyncError(
 //-- forget password --//
 export const forgetPassword = catchAsyncError(
         async(req,res,next)=>{
-        let {email,name}=req.body
+        let {email}=req.body
         let user = await userModel.findOne({email})
         if(!user){return next(new appError("user not found please register as a new user",404))}
         let code = nanoid(4)   
+        let name = user.name
         sendForgetEmail({email,name,code})
         const sendCode= await userModel.findOneAndUpdate({email},{code},{new:true})
         res.status(200).json({message:"done",sendCode})
