@@ -10,21 +10,24 @@ import { nanoid } from "nanoid"
 
 
 //-- register --//
-export const signup =catchAsyncError(async(req,res,next)=>{
-    console.log(req.file);
-    if(!req.file){return next(new appError("file type not accepted",400))}
-    let{email,name,password,confirmPassword,age,mobileNumber}=req.body
-    let founded= await userModel.findOne({email})
-    if(founded){return next(new appError("Email already registered",400))}
-        if(password!==confirmPassword){return next(new appError("Password not matched",400))}
-        let {secure_url} = await cloudinary.uploader.upload(req.file.path,{folder:"pic"})
-        let  hashPassword= bcrypt.hashSync(password,Number(process.env.Rounded))
-        let addUser = await userModel.insertMany({email,name,password:hashPassword,age,mobileNumber,profilePicPath:secure_url})
-        let link= `${req.protocol}://${req.headers.host}`
-        sendEmail({email,name,link})
-        res.status(201).json({message:"done",addUser})
+export const signup =async(req,res,next)=>{
+try {
+        if(!req.file){return next(new appError("file type not accepted",400))}
+        let{email,name,password,confirmPassword,age,mobileNumber}=req.body
+        let founded= await userModel.findOne({email})
+        if(founded){return next(new appError("Email already registered",400))}
+            if(password!==confirmPassword){return next(new appError("Password not matched",400))}
+            let {secure_url} = await cloudinary.uploader.upload(req.file.path,{folder:"pic"})
+            let  hashPassword= bcrypt.hashSync(password,Number(process.env.Rounded))
+            let addUser = await userModel.insertMany({email,name,password:hashPassword,age,mobileNumber,profilePicPath:secure_url})
+            let link= `${req.protocol}://${req.headers.host}`
+            sendEmail({email,name,link})
+            res.status(201).json({message:"done",addUser})
     
-})
+} catch (error) {
+console.log(error);        
+}    
+}
 //-- verify mail --//
 export const verify= catchAsyncError(async(req,res,next)=>{
         let {token} = req.params
