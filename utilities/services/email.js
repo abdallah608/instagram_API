@@ -20,5 +20,5 @@ export const sendEmail = async(options)=>{
         html: html(token,options)
       });
     
-    
+ console.log(info);   
 }
