@@ -3,9 +3,8 @@ import { html } from "./email-verify.js";
 import jwt from "jsonwebtoken"
 
 
-async function sendEmail(options) {
-
-
+async function sendEmail(email,name) {
+ 
   let transporter = nodemailer.createTransport({
     service: process.env.service,
     auth: {
@@ -14,20 +13,18 @@ async function sendEmail(options) {
     },
   });
 
-  let token = jwt.sign({email:options.email},process.env.verifyKey)
+  let token = jwt.sign({email},process.env.verifyKey)
   
   let info = await transporter.sendMail({
     from: '"Instagram 👻" <abdallahhassanshaaban@gmail.com>', 
-    to: options.email, 
+    to: email, 
     subject: "Verify Email",
     text: "Verify Email", 
-    html: html(token,options)
+    html: html(token,name)
       });
 
   console.log("Message sent: %s", info.messageId);
 
 }
-
-sendEmail().catch(console.error);
 
 export default sendEmail

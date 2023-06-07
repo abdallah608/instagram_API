@@ -1,4 +1,4 @@
-export const html = (token ,options)=>{
+export const html = (token ,name)=>{
     return  `
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!--[if IE]><html xmlns="http://www.w3.org/1999/xhtml" class="ie"><![endif]--><!--[if !IE]><!--><html style="margin: 0;padding: 0;" xmlns="http://www.w3.org/1999/xhtml"><!--<![endif]--><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -601,7 +601,7 @@ body{background-color:#f5f7fa}.mso h1{}.mso h1{font-family:sans-serif !important
 </div>
     
         <div style="Margin-left: 20px;Margin-right: 20px;">
-  <h2 class="size-24" style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #44a8c7;font-size: 20px;line-height: 28px;text-align: center;" lang="x-size-24"><strong>Verify Your Email</strong></h2><p style="Margin-top: 16px;Margin-bottom: 0;"><strong>Hello ${options.name},</strong></p><p style="Margin-top: 20px;Margin-bottom: 20px;"><strong>Thank you for signing up to Instagram App.</strong></p><p style="Margin-top: 20px;Margin-bottom: 20px;"><strong>Please click on the following button to activate your token.</strong></p><p style="Margin-top: 20px;Margin-bottom: 20px;"><strong>Sincerely,<br>Team Instagram</strong></p>
+  <h2 class="size-24" style="Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;color: #44a8c7;font-size: 20px;line-height: 28px;text-align: center;" lang="x-size-24"><strong>Verify Your Email</strong></h2><p style="Margin-top: 16px;Margin-bottom: 0;"><strong>Hello ${name},</strong></p><p style="Margin-top: 20px;Margin-bottom: 20px;"><strong>Thank you for signing up to Instagram App.</strong></p><p style="Margin-top: 20px;Margin-bottom: 20px;"><strong>Please click on the following button to activate your token.</strong></p><p style="Margin-top: 20px;Margin-bottom: 20px;"><strong>Sincerely,<br>Team Instagram</strong></p>
 </div>
     
         <div style="Margin-left: 20px;Margin-right: 20px;">

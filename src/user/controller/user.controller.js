@@ -20,7 +20,7 @@ export const signup =catchAsyncError(async(req,res,next)=>{
         let  hashPassword= bcrypt.hashSync(password,Number(process.env.Rounded))
         let addUser = await userModel.insertMany({email,name,password:hashPassword,age,mobileNumber,profilePicPath:secure_url})  
         
-        sendEmail({email,name})
+        sendEmail(email,name)
         if(!sendEmail){return next(new appError("Email not send",400))}
         res.status(201).json({message:"done",addUser})
     
