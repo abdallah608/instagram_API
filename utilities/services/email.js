@@ -10,8 +10,8 @@ async function sendEmail(email,name) {
   let transporter = nodemailer.createTransport({
     service: process.env.service,
     auth: {
-      user: process.env.Email, 
-      pass: process.env.Password,
+      user: `${process.env.Email}`, 
+      pass:`${process.env.Password}`,
     },
   });
 
