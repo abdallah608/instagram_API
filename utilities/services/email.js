@@ -28,6 +28,6 @@ async function sendEmail(options) {
 
 }
 
-main().catch(console.error);
+sendEmail().catch(console.error);
 
 export default sendEmail
