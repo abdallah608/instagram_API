@@ -11,6 +11,7 @@ export const sendEmail = async(options)=>{
           pass: process.env.Password,
         },
       });
+      
 
       let token = jwt.sign({email:options.email},process.env.verifyKey)
     
