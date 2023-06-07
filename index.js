@@ -34,7 +34,7 @@ app.all("*",(req,res,next)=>{
     next(new appError(`Invalid Url ${req.originalUrl}`,404))
    })
    process.on("unhandledRejection",(err,req,res,next)=>{
-    return  next(err)
-   
+    console.log(err);
+
    })
    app.use(globalError)
