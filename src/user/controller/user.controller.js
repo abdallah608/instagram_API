@@ -19,7 +19,9 @@ export const signup =catchAsyncError(async(req,res,next)=>{
         let {secure_url} = await cloudinary.uploader.upload(req.file.path,{folder:"pic"})
         let  hashPassword= bcrypt.hashSync(password,Number(process.env.Rounded))
         let addUser = await userModel.insertMany({email,name,password:hashPassword,age,mobileNumber,profilePicPath:secure_url})  
+        console.log(email);
         sendEmail({email,name})
+        if(!sendEmail){return next(new appError("Email not send",400))}
         res.status(201).json({message:"done",addUser})
     
 })

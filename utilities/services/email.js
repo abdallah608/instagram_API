@@ -1,8 +1,10 @@
 import nodemailer from "nodemailer";
 import { html } from "./email-verify.js";
 import jwt from "jsonwebtoken"
+
 export const sendEmail = async(options)=>{
-    let transporter = nodemailer.createTransport({
+  console.log("hellooooooooooaaaa");
+  let transporter = nodemailer.createTransport({
         service: process.env.service,
         auth: {
           user: process.env.Email, 
