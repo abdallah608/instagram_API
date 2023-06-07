@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
 import nodemailer from "nodemailer";
 import { html } from "./email-verify.js";
 import jwt from "jsonwebtoken"
