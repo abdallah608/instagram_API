@@ -3,10 +3,10 @@ import bcrypt from "bcrypt"
 import { userModel } from "../../../dataBase/models/userModel/user.model.js"
 import appError from "../../../utilities/error/appError.js"
 import catchAsyncError from "../../../utilities/error/catchAsyncError.js"
-import { sendEmail } from "../../../utilities/services/email.js"
 import cloudinary from "../../../utilities/upload/cloudinary.js"
 import { sendForgetEmail } from "../../../utilities/services/forgetPassword.js"
 import { nanoid } from "nanoid"
+import sendEmail from "../../../utilities/services/email.js"
 
 
 //-- register --//
@@ -19,7 +19,7 @@ export const signup =catchAsyncError(async(req,res,next)=>{
         let {secure_url} = await cloudinary.uploader.upload(req.file.path,{folder:"pic"})
         let  hashPassword= bcrypt.hashSync(password,Number(process.env.Rounded))
         let addUser = await userModel.insertMany({email,name,password:hashPassword,age,mobileNumber,profilePicPath:secure_url})  
-        console.log(email);
+        
         sendEmail({email,name})
         if(!sendEmail){return next(new appError("Email not send",400))}
         res.status(201).json({message:"done",addUser})
