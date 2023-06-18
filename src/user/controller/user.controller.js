@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import { userModel } from "../../../dataBase/models/userModel/user.model.js"
@@ -12,6 +14,8 @@ import sendEmail from "../../../utilities/services/email.js"
 //-- register --//
 export const signup =catchAsyncError(async(req,res,next)=>{
     if(!req.file){return next(new appError("file type not accepted",400))}
+    console.log(req.file);
+
     let{email,name,password,confirmPassword,age,mobileNumber}=req.body
     let founded= await userModel.findOne({email})
     if(founded){return next(new appError("Email already registered",400))}

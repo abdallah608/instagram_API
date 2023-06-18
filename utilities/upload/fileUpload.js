@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
 import multer from "multer"
 
 export const fileUpload = ()=>{
