@@ -30,10 +30,17 @@ handle user routers :
 Handle posts routers :
 
 /post/addPost  (POST)===>{text,path,token)
+
 /post/userPost  (GET)===>{token)
+
 /post/allPost (GET)===>{token)
+
 /post/updatePost (PUT)===>{text,_id,token)
+
 /post /updatePostStatus (PUT)===>{privacy,_id,token)
+
 /post/deletePost (DELETE)===>{_id,token)
+
 /post /likePost (POST)===>{postId,token)
+
 /post /disLikePost   (POST)===>{postId,token)
